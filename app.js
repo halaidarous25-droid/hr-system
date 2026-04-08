@@ -4,10 +4,10 @@ async function login() {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
 
-  const { error } = await supabase.auth.signInWithPassword({
-    email,
-    password
-  });
+  const { error } = await client.auth.signInWithPassword({
+  email,
+  password
+});
 
   if (error) {
     alert("خطأ في تسجيل الدخول");
