@@ -47,7 +47,7 @@ async function createRequest() {
   const start = document.getElementById("start").value;
   const end = document.getElementById("end").value;
 
-  await supabase.from("requests").insert([
+  const { data, error } = await supabase.from("requests").insert([
     {
       user_id: user.id,
       type: type,
@@ -55,6 +55,16 @@ async function createRequest() {
       end_date: end,
       status: "pending"
     }
+  ]);
+
+  if (error) {
+    console.log("ERROR:", error);
+    alert("خطأ: " + error.message);
+  } else {
+    console.log("SUCCESS:", data);
+    alert("تم الحفظ بنجاح");
+  }
+}
   ]);
 
   alert("تم إرسال الطلب");
