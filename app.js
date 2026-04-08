@@ -83,3 +83,5 @@ async function createRequest() {
     alert("خطأ غير متوقع");
   }
 }
+window.createRequest = createRequest;
+window.login = login;
