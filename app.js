@@ -1,3 +1,4 @@
+alert("APP JS LOADED");
 supabase.auth.onAuthStateChange((event, session) => {
   console.log("SESSION:", session);
 });
