@@ -1,4 +1,6 @@
-
+supabase.auth.onAuthStateChange((event, session) => {
+  console.log("SESSION:", session);
+});
 // تسجيل الدخول
 async function login() {
   const email = document.getElementById("email").value;
