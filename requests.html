@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>طلبات</title>
+</head>
+
+<body>
+
+<h2>طلب جديد</h2>
+
+<select id="type">
+  <option value="annual">اعتيادية</option>
+  <option value="emergency">طارئة</option>
+  <option value="sick">مرضية</option>
+</select>
+
+<input type="date" id="start">
+<input type="date" id="end">
+
+<button onclick="createRequest()">إرسال</button>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script src="supabase.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
