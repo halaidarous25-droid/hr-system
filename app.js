@@ -1,4 +1,4 @@
-console.log("APP WORKING");
+
 // تسجيل الدخول
 async function login() {
   const email = document.getElementById("email").value;
