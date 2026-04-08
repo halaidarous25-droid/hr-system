@@ -85,3 +85,13 @@ async function createRequest() {
 }
 window.createRequest = createRequest;
 window.login = login;
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("submitBtn");
+
+  if (btn) {
+    btn.addEventListener("click", () => {
+      console.log("BUTTON CLICKED");
+      createRequest();
+    });
+  }
+});
