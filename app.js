@@ -41,31 +41,43 @@ function goToRequests() {
 
 // إنشاء طلب
 async function createRequest() {
-  const user = (await supabase.auth.getUser()).data.user;
+  try {
+    const userData = await supabase.auth.getUser();
+    const user = userData.data.user;
 
-  const type = document.getElementById("type").value;
-  const start = document.getElementById("start").value;
-  const end = document.getElementById("end").value;
+    console.log("USER:", user);
 
-  const { data, error } = await supabase.from("requests").insert([
-    {
-      user_id: user.id,
-      type: type,
-      start_date: start,
-      end_date: end,
-      status: "pending"
+    if (!user) {
+      alert("المستخدم غير مسجل دخول");
+      return;
     }
-  ]);
 
-  if (error) {
-    console.log("ERROR:", error);
-    alert("خطأ: " + error.message);
-  } else {
-    console.log("SUCCESS:", data);
-    alert("تم الحفظ بنجاح");
+    const type = document.getElementById("type").value;
+    const start = document.getElementById("start").value;
+    const end = document.getElementById("end").value;
+
+    console.log(type, start, end);
+
+    const { data, error } = await supabase.from("requests").insert([
+      {
+        user_id: user.id,
+        type: type,
+        start_date: start,
+        end_date: end,
+        status: "pending"
+      }
+    ]);
+
+    if (error) {
+      console.error("INSERT ERROR:", error);
+      alert(error.message);
+    } else {
+      console.log("SUCCESS:", data);
+      alert("تم الحفظ بنجاح");
+    }
+
+  } catch (err) {
+    console.error("CATCH ERROR:", err);
+    alert("خطأ غير متوقع");
   }
-}
-  ]);
-
-  alert("تم إرسال الطلب");
 }
